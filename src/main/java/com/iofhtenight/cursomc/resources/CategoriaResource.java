@@ -1,6 +1,8 @@
 package com.iofhtenight.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.Servlet;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.iofhtenight.cursomc.CategoriaDTO;
 import com.iofhtenight.cursomc.domain.Categoria;
 import com.iofhtenight.cursomc.services.CategoriaService;
 
@@ -50,4 +53,10 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = service.findAll();
+		List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
 }
