@@ -1,4 +1,4 @@
-package com.iofhtenight.cursomc;
+package com.iofthenight.cursomc.dto;
 
 import java.io.Serializable;
 

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.iofhtenight.cursomc.CategoriaDTO;
 import com.iofhtenight.cursomc.domain.Categoria;
 import com.iofhtenight.cursomc.services.CategoriaService;
+import com.iofthenight.cursomc.dto.CategoriaDTO;
 
 @RestController
 @RequestMapping(value="/categorias")

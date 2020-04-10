@@ -10,12 +10,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.iofhtenight.cursomc.CategoriaDTO;
 import com.iofhtenight.cursomc.domain.Categoria;
 import com.iofhtenight.cursomc.domain.Cliente;
 import com.iofhtenight.cursomc.repositories.CategoriaRepository;
 import com.iofhtenight.cursomc.services.exception.DataIntegrityException;
 import com.iofhtenight.cursomc.services.exception.ObjectNotFoundException;
+import com.iofthenight.cursomc.dto.CategoriaDTO;
 
 @Service
 public class CategoriaService {

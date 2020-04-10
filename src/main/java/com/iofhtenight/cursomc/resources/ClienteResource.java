@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.iofhtenight.cursomc.ClienteDTO;
+import com.iofhtenight.cursomc.domain.Categoria;
 import com.iofhtenight.cursomc.domain.Cliente;
 import com.iofhtenight.cursomc.services.ClienteService;
+import com.iofthenight.cursomc.dto.CategoriaDTO;
+import com.iofthenight.cursomc.dto.ClienteDTO;
+import com.iofthenight.cursomc.dto.ClienteNewDTO;
 
 @RestController
 @RequestMapping(value="/clientes")
@@ -39,6 +43,15 @@ public class ClienteResource {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
+		Cliente obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
